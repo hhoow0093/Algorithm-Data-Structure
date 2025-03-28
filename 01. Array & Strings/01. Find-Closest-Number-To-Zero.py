@@ -50,6 +50,6 @@ main()
 # def main():
 #     nums = [int(num) for num in input("Enter a list of numbers (comma-separated): ").split(",")]
 #     result = findClosestNumber(nums)
-#     print(result)
+#     print(re)
 
 # main()

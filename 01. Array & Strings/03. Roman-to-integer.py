@@ -43,3 +43,39 @@ Constraints:
 s contains only the characters ('I', 'V', 'X', 'L', 'C', 'D', 'M').
 It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 """
+
+def check(letter):
+    if(letter == 'I'):
+        return 1
+    elif(letter == 'V'):
+        return 5
+    elif(letter == 'X'):
+        return 10
+    elif(letter == 'L'):
+        return 50
+    elif(letter == 'C'):
+        return 100
+    elif(letter == 'D'):
+        return 500
+    elif(letter == 'M'):
+        return 1000
+    else:
+        return 0
+
+def solve(roman_number):
+    answer = 0
+    index = 0
+    end_loop = len(roman_number)
+    while(index < end_loop):
+        if(((index + 1) < len(roman_number)) and (check(roman_number[index]) < check(roman_number[index + 1]))):
+            answer += check(roman_number[index + 1]) - check(roman_number[index])
+            index += 2
+        else:
+            answer += check(roman_number[index])
+            index += 1
+    return answer
+def main():
+    roman_number = input("input any roman number: ")
+    print(solve(roman_number))
+
+main()
