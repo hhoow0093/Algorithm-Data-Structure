@@ -1,5 +1,5 @@
 dictionary  = {}
-jewels = "z"
+jewels = "Z"
 stones = "ZZ"
 
 for i in range(0, len(stones)):
