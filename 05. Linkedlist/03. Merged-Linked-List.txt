@@ -1,0 +1,46 @@
+# step 1 : initialize an empty dummy node and another pointer that point to that dummy node
+# step 2 : check each head from list1 and list2 consecutively
+# step 3 : irerate the loop until both list1 and list2 cannot be compared by value
+# step 4 : if both value is the same, update both head by 1. 
+# step 5 : of list1 is lesser than list2 in terms of value, onlt update list1, vice versa
+# step 6 : each updates on the head from the lists, update temp pointer to ensure it alyways reaches the tail of the linked list.
+# step 7 : if loop ends, make sure to add the remaining nodes from list1 or list2
+
+
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode()
+        temp = dummy
+        while list1 and list2:
+            if list1.val == list2.val:
+                temp.next = list1
+                temp = temp.next
+                list1 = list1.next
+                temp.next = list2
+                temp = temp.next
+                list2 = list2.next
+            elif list1.val < list2.val:
+                temp.next = list1
+                temp = temp.next
+                list1 = list1.next
+            elif list2.val < list1.val:
+                temp.next = list2
+                temp = temp.next
+                list2 = list2.next
+        
+        if list1:
+            temp.next = list1
+        if list2:
+            temp.next = list2
+    
+        return dummy.next
+            
+
+        
+
