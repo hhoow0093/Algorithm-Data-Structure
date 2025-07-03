@@ -1,0 +1,41 @@
+# step 1 : initialize a tail pointer to keep track of the linked list length
+# step 2 : subtract linked list length with n to get new variable to the not needed node. lets mark it as modifyNode. and modify. 
+# step 3 : iterate the linked list from start = 0 until modify to get into the not needed not. make sure to initialize prev pointer before the mofifyNode.
+# step 4 : mark prev.next = modifyNode.next then modifyNode.next = None then return head
+# step 5 : if modify is 0 only move head by 1 and return the new linked list
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        length = 0
+        tail = head
+        while tail:
+            length +=1
+            tail = tail.next
+
+        modify = length - n
+        if modify == 0:
+            head = head.next
+            return head
+
+        modifyNode = head
+        prev = head
+        start = 0 
+        
+        while start < modify:
+            prev = modifyNode
+            modifyNode = modifyNode.next 
+            start +=1
+
+        prev.next = modifyNode.next
+        modifyNode.next = None
+        return head
+
+
+
+
+        

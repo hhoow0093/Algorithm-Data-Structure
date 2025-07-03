@@ -1,0 +1,28 @@
+# step 1 : initialize tail pointer to keep track of the linked list length
+# step 2 : once length is defined, divide its length by 2 and then floor it
+# step 3 : the result of the division is the middle of the node
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        length = 0
+        tail = head
+        while tail:
+            length += 1
+            tail = tail.next
+        
+        middle = length // 2
+
+        start = 0
+        middleNode = head
+        while start < middle:
+            middleNode = middleNode.next
+            start += 1
+        
+        return middleNode
+
+        

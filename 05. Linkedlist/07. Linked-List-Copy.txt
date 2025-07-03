@@ -1,0 +1,33 @@
+# step 1 : initialize a hash map to keep copy of each node from linkedlist
+# step 2 : after each node is copied, assign the next and random for each node
+# step 3 : return the hashmap copy
+
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, x: int, next: 'Node' = None, random: 'Node' = None):
+        self.val = int(x)
+        self.next = next
+        self.random = random
+"""
+
+class Solution:
+    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        if head is None:
+            return None
+        
+        curr = head
+        copy = {}
+        while curr:
+            newNode = Node(curr.val)
+            copy[curr] = newNode
+            curr = curr.next
+
+        curr = head
+        while curr:
+            copy[curr].next = copy[curr.next] if curr.next else None
+            copy[curr].random = copy[curr.random] if curr.random else None
+            curr = curr.next
+
+        return copy[head]
+        

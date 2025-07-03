@@ -1,0 +1,24 @@
+# step 1 : initialize a dummy node that points to the head
+# step 2 : if head is None return false since there is no cycle
+# step 3 : initialize fast and slow pointer where slow pointer points the dummy node and the fast pointer points dummy.next
+# step 4 : iterate until slow, fast, and fast.next is None
+# step 5 : if slow is equal to fast, return True
+# step 6 : if iteration rule is broken, return False since there is no cycle from the linked list
+
+class Solution:
+    def hasCycle(self, head: Optional[ListNode]) -> bool:
+        if head is None:
+            return False
+        
+        dummy = ListNode()
+        dummy.next = head
+        slow = dummy
+        fast = dummy.next
+        
+        while slow and fast and fast.next:
+            if slow == fast:
+                return True
+            fast = fast.next.next
+            slow = slow.next
+        
+        return False
