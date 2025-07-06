@@ -1,0 +1,25 @@
+step 1 : initialize low and high pointer and valvulate mid pointer by (low + high) // 2
+step 2 : if nums in mid pointer is lower than target, move low pointer by mid + 1 and update mid pointer
+step 3 : if nums in mid pointer is bigger than target, move high pointer by mid - 1 and update mid pointer
+step 4 : if nums in mid pointer the same as target, return mid
+step 5 : iterate until low is equal or bigger than high pointer
+step 6 : after iterarion return -1 to indicate to target has been found
+(o log n)
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+        low = 0
+        high = len(nums) - 1
+        mid = (high + low) // 2
+        while low <= high:
+            if nums[mid] < target:
+                low = mid + 1
+                mid = (high + low) // 2
+            elif nums[mid] > target:
+                high = mid - 1
+                mid = (high + low) // 2
+            elif nums[mid] == target:
+                return mid
+    
+        return -1
+        

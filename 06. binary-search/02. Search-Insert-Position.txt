@@ -1,0 +1,23 @@
+    # step 1 : initialize high and low pointer from the array. 
+    # step 2 : calculate the mid pointer
+    # step 3 : repeat iteration if low <= high
+    # step 4 : if nums in the array is smaller than target, move low by mid + 1 and update mid
+    # step 5 : if nums in the array is bigger than target, move high pointer by mid - 1 and update mid
+    # step 6 : if nums in array for mid pointer is the same as the target, return the index mid
+    # step 7 : otherwise, the loop breaks and return mid + 1 pointer
+
+    class Solution:
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        low = 0 
+        high = len(nums) - 1
+        mid = (low + high) // 2
+        while low <= high:
+            if nums[mid] < target:
+                low = mid + 1
+                mid = (high + low) // 2
+            elif nums[mid] > target :
+                high = mid - 1
+                mid = (high + low) // 2
+            else:
+                return mid
+        return mid + 1

@@ -1,0 +1,44 @@
+# step 1 : find out which row has the target most likely.
+# step 2 : to find out the row, use top and bottom row apporach and comupte mid row by using while loop if top <= bottom
+# step 3 : if the first value of mid row is smaller and the last value of mid row is larger than target, then the target mush be within that row so break 
+# step 4 : if first value of mid row is bigger than target, move bottom by mid - 1
+# step 5 : if the first value of mid row is smaller than target, move top by mid + 1
+# step 6 : get the resulting mid row, store it as a List
+# step 7 : compute its mid by generating new high and low pointer from the new List
+# step 8 : if the mid pounter from the list is smaller than target, move low = mid + 1
+# step 9 : if mid pointer from the list is higher than target, move high = mid - 1
+# step 10 : if mid pointer number from list is the same as target, return True
+# step 11 : otherwise, return False.
+
+class Solution:
+    def SearchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        top = 0
+        bottom = len(matrix) - 1
+
+        while top <= bottom:
+            mid = (top + bottom) //2
+            if matrix[mid][0] < target and matrix[mid][-1] > target:
+                break
+            elif matrix[mid][0] > target:
+                bottom = mid -1
+            else:
+                top = mid + 1
+        
+        row = (top + bottom) // 2
+        my_list = matrix[row]
+        high = len(my_list) - 1
+        low  = 0
+        
+        while low <= high:
+            mid = (low + high) // 2
+            if my_list[mid] < target:
+                low = mid + 1
+                mid = (low + high) // 2
+            elif my_list[mid] > target:
+                high = mid -  1
+                mid = (low + high) // 2
+            elif target == my_list[mid]:
+                return True
+                
+        return False
+
