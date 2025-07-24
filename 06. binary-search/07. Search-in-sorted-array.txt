@@ -1,0 +1,32 @@
+# step 1 : initialize left and right pointer
+# step 2 : iterate while left <= right
+# step 3 :  calculate mid. if mid == target, return mid
+# step 4 : if nums[mid] > nums[left], then this is an ascending order
+# step 5 : if the ascending order is within the target number, then move right pointer by mid -1
+# step 6 : if the ascending order is'nt within the target number, then move left pointer by mid + 1
+# step 7 : if not nums[mid] > nums[left], then nums[mid] and nums[right] must be am ascending order
+# step 8 : if the ascending order target number is within mid and right, then move left by mid + 1
+# step 9 : if the ascending order target number is not within mid and right mode right by mid - 1
+# step 10 : if iteration ends, then target number is not found. return -1
+
+class Solution:
+    def search(self, nums: List[int], target: int) -> int:
+    left = 0
+    right = len(nums) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if nums[mid] == target:
+            return mid
+
+        elif nums[mid] >= nums[left]:
+            if nums[left] <= target <= nums[right]:
+                right = mid - 1
+            else:
+                left = mid + 1
+        
+        elif nums[mid] <= nums[right]:
+            if nums[mid] <= target <= nums[right]:
+                left = mid + 1
+            else:
+                right = mid - 1
+    return -1 
