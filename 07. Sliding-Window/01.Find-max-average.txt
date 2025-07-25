@@ -1,0 +1,14 @@
+# step 1 : initalize window_sum to sum up all value from first element to k - 1 index.
+# step 2 : store it in max_sum
+# step 3 : iterate from k value until len(nums)
+# step 4 : for each iteration, compute new window_sum by window_sum += nums[i] + nums[i - k]
+# step 5 : comparre the max value between max_sum and window_sum, then dtore it in max_sum
+
+class Solution:
+    def findMaxAverage(self, nums: List[int], k: int) -> float:
+    window_sum = sum(nums[:k])
+    max_sum = window_sum
+    for i in range(k, len(nums)):
+        window_sum += nums[i] - nums[i - k]
+        max_sum = max(max_sum, window_sum)
+    return max_sum / k

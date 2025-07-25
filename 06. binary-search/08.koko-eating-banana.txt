@@ -1,0 +1,32 @@
+# step 1 :  initialize less and more pointer since koko 
+            at least can eat 1 banana per hour and 
+            at most max(pile) per hour. Why ? because the len(pile) <= hours.
+
+# step 2 :  find the mid value between less and more. 
+            for each pile calculate ceiling value of pile / mid. stire it as new_h
+
+# step 3 :  if new_h <= h, we found our candiate answer 
+            since the banana can be finished before the given time. 
+            move more - 1 since we can find the lesser of the minimum number
+
+# step 4 :  if the banana cannot be finished from the new_h , then move less by mid + 1 to match
+            the condition in step 3
+    
+# step 5 :  return the res variable
+
+class Solution:
+    def minEatingSpeed(self, piles: List[int], h: int) -> int:
+        less = 1
+        more = max(piles)
+        res = 0
+        while less <= more:
+            mid = (less+more) // 2
+            new_h = 0
+            for pile in piles:
+                new_h += math.ceil(pile/mid)
+            if new_h <= h:
+                res = mid
+                more = mid - 1
+            elif new_h > h:
+                less = mid + 1
+        return res
