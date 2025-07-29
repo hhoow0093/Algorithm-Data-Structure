@@ -1,0 +1,15 @@
+# step 1 : uses recursive approach for every node in the tree
+# step 2 : if root is none, then return nothing
+# step 3 : swap root.left, root.right = root.right, root.left
+# step 4 : then do the recursive function by calling self.invertTree(root.left) and self.inverTree(root.right)
+# step 5 : return root
+
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if root is None:
+            return
+        
+        root.left, root.right = root.right, root.left
+        self.invertTree(root.left)
+        self.inverTree(root.right)
+        return root

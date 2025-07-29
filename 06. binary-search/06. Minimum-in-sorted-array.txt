@@ -1,0 +1,17 @@
+step 1 : initialize left and right pointer
+step 2 : iterate while left < right. 
+step 3 : calulate mid by (left + right) // 2.
+step 4 : if nums in mid pointer is greater than right pointer, move left by 1 from mid
+step 5 : if nums in mid pointer is lesser then right pointer, move right equal to mid
+step 6 : return nums in left or right pointer.
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        left = 0
+        right = len(nums) - 1
+        while left < right:
+            mid = (left + right) // 2
+            if nums[mid] > nums[right]:
+                left = mid + 1
+            elif nums[mid] < nums[right]:
+                right = mid
+        return nums[left]

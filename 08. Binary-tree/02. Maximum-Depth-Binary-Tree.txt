@@ -1,0 +1,13 @@
+# step 1 : if root is None return 0 since there will be no more height to be continued
+# step 2 : initialize left_height and right_height from the root by self.maxDepth(root.left) + 1 and self.maxDepth(root.right) + 1
+# step 3 : return the max from left_height and right_height
+
+class Solution:
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if root is None:
+            return 0
+        
+        left_height = self.maxDepth(root.left) + 1
+        right_height = self.maxDepth(root.right) + 1
+
+        return max(left_height, right_height)

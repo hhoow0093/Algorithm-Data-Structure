@@ -1,0 +1,18 @@
+# step 1 : define a dfs function. return [True, 0]. True indicates that this node is balanced and the height is 0
+# step 2 : define left_balance and left_height variable to do the recursive function from dfs function, vice versa with right_balance and right_height
+# step 3 : define a is_balanced variable that checks the balance factor for each node
+# step 4 : return [is_balanced, max(left_height, right_height) + 1]
+
+class Solution:
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        def dfs(root):
+            if root is None:
+                return [True, 0]
+
+            left_balance, left_height = dfs(root.left)
+            right_balance, right_height = dfs(root.right)
+
+            is_balanced = left_balance and right_balance and abs(left_height - right_height) < 2
+            return [is_balanced, max(right_height, left_height) + 1]
+        return dfs(root)[0] 
+            
