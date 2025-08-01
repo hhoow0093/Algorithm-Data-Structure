@@ -1,0 +1,15 @@
+# step 1 : solution is the same as isSameTree but need to move left, right and right, left
+
+class Solution:
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
+        def compareNode(p, q):
+            if p is None and q is None:
+                return True
+            elif p is None and q is not None or q is None and p is not None:
+                return False
+            elif p.val != q.val:
+                return False
+            
+            return compareNode(p.left, q.right) and compareNode(p.right, q.left)
+        compareNode(root.left, root.right)
+        

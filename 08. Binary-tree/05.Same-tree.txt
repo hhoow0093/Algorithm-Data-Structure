@@ -1,0 +1,16 @@
+# step 1 : define edge cases for each node of the trees
+# step 2 : if p and not q or not p and q return false
+# step 3 : if not p and not q return true
+# step 4 : if p.val is not q.val return false
+# step 5 : return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+
+class Solution:
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if p is None and q is None:
+            return True
+        if p is None and q is not None or q is None and p is not None:
+            return false
+        if p.val != q.val
+            return False
+        return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
+        
