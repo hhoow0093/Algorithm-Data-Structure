@@ -1,0 +1,21 @@
+step 1 : define a helper function with root and cuur sum as parameters
+step 2 : if root is None then return false
+step 3 : add curr_sum by node.val
+step 3 : if root is leaf node return if curr_sum == targetSum
+step 4 : return helper_function(root.left, curr_sum) or helper_function(root.right, curr_sum)
+
+class Solution:
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
+        def has_sum(root, curr_sum):
+            if root is None:
+                return False
+
+            curr_sum += root.val
+
+            if root.left is None and root.right is None:
+                return curr_sum == targetSum
+
+            return has_sum(root.left, curr_sum) or has_sum(root.right, curr_sum)
+
+        return has_sum(root, 0) 
+            
