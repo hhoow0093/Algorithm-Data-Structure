@@ -1,0 +1,23 @@
+step 1 : initialize result variable to store inorder travsersal. Remember that in order travsersal alywas store ascending order from a BST
+step 2 : initialize curr and next_i to compare each difference between 2 numbers. initialize difference to store the minimum value of numbers
+step 3 : keep iterating numbers between curr and next_i to check the minimum numbers
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        result = []
+        def traverse(root):
+            traverse(root.left)
+            result.append(root.val)
+            traverse(root.right)
+        traverse(root)
+        curr = 0
+        next_i = 1
+        difference = float('inf')
+        while next_i < len(result):
+            if result[next_i] - result[curr] < difference:
+                difference = result[next_i] - result[curr]
+            
+            curr += 1
+            next_i += 1
+            
+        return difference

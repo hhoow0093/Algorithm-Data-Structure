@@ -1,0 +1,13 @@
+step 1 : initialize result variable to store in order travsersal of BST. initialize index by k - 1 to keep track of the smallest k numbers
+step 2 : return result[index]
+
+class Solution:
+    def kthSmallest(self, root: Optional[TreeNode], k: int) -> int:
+        index = k - 1
+        result = []
+        def traverse(root):
+            traverse(root.left)
+            result.append(root.val)
+            traverse(root.right)
+        traverse(root)
+        return result[index]

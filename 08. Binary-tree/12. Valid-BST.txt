@@ -1,0 +1,23 @@
+step 1 : store result variable as the result of in order travsersal of BST
+step 2 : initialize curr and next_i to check whether it is a valid BST or not
+step 3 : loop while next_i < len(result)
+step 4 : if result[next_i] <= result[curr] return False
+step 5 : after the iteration, return True.
+
+class Solution:
+    def isValidBST(self, root: Optional[TreeNode]) -> bool:
+        result = []
+        def traverse(root):
+            traverse(root.left)
+            result.append(root.val)
+            traverse(root.right)
+        traverse(root)
+
+        curr = 0 
+        next_i = 1
+        while next_i < len(result):
+            if result[next_i] <= result[curr]:
+                return False
+            curr += 1
+            next_i += 1
+        return True
