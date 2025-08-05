@@ -1,0 +1,28 @@
+step 1 : initialize each stones a negative number for max heap
+step 2 : initialize heap in python
+step 3 : while length of heap is greater than 1 get the largest and the 2nd largest number from heap tree 
+and if the values are different, push the difference between the largest and 2nd largest number
+step 4 : if len of stones is 1 return the node value, else return 0
+
+import heapq
+class Solution:
+    def lastStoneWeight(self, stones: List[int]) -> int:
+        for i in range(len(stones)):
+            stones[i] = -stones[i]
+        
+        heapq.heapify(stones)
+
+        while len(stones) > 1:
+            biggest = heapq.heappop(stones)
+            bigger_2 = heapq.heappop(stones)
+            
+            if biggest != bigger_2:
+                heapq.heappush(stones, biggest - bigger_2)
+        
+        if len(stones) == 1:
+            return -heapq.heappop(stones)
+        else:
+            return 0
+        
+
+        
