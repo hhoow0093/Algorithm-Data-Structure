@@ -1,0 +1,22 @@
+step 1 : create a max heap for storing the number of frequencies from the array
+step 2 : after max heap tree is structured, pop the heap k amount of times
+step 3 : return the key list.
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        keys = []
+        heap = []
+        counter = {}
+        
+        for i in range(len(nums)):
+            if nums[i] not in counter:
+                counter[nums[i]] = 1
+            else:
+                counter[nums[i]] += 1
+        
+        for key, value in counter.items():
+            heapq.heappush(heap, (-value, key))
+        
+        for i in range(k):
+            keys.append(heapq.heappop(heap)[1])
+        return key
+
