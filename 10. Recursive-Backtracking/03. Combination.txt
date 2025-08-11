@@ -1,0 +1,25 @@
+step 1 : generate all possible numbers to be added as combination
+step 2 : define mycombination variable to store combination from all possible numbers, define res variable to store all the mycombination array subsets
+step 3 : define a backtrack function to store all possible combinations
+step 4 : if my combination length is equal to k append to res
+step 5 : iterate from index 0 until len(nums), append mycombination by nums[i] then call the function backtrack(i + 1) recursively
+step 6 : pop mycombination to find other possible combination
+step 7 : call the function start from index 0 abd return the res variable
+
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        nums = [num + 1 for num in range(n)]
+        mycombination = []
+        res = []
+        def backtrack(start):
+            if len(mycombination) == k:
+                res.append(mycombination[:])
+                return
+            for i in range(start, len(nums)):
+                mycombination.append(nums[i])
+                backtrack(i + 1)
+                mycombination.pop()
+        backtrack(0)
+        return res
+
+

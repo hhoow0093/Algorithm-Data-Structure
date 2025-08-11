@@ -1,0 +1,26 @@
+step 1 : for every linked lists, push the first node to the heap
+step 2 : create a dummy variable and a curr variable to initialize empty merged linked list
+step 3 : while heap exists, pop the heap tree (mininum) and add ot the new merged linked list
+step 4 : move node to node.next, if node exist, push the node to the heap tree
+
+import heapq
+class Solution:
+    def mergeKLists(self, lists: List[Optional[ListNode]]) -> Optional[ListNode]:
+        heap = []
+        
+        for i, node in enumerate(lists):
+            if node:
+                heapq.heappush(heap, (node.val, i, node))
+        
+        D = ListNode()
+        curr = D
+        while heap:
+            val, index, mynode = heapq.heappop(heap)
+            curr.next = mynode
+            curr = mynode
+            mynode = mynode.next
+            if mynode:
+                heapq.heappush(heap, (mynode.val, index, mynode))
+        return D.next
+
+        
