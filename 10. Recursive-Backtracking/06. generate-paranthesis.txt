@@ -1,0 +1,21 @@
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        ans, sol = [], []
+        
+        def backtrack(myopen, close):
+            if len(sol) ==  2 * n:
+                ans.append(''.join(sol))
+                return
+            if myopen < n:
+                sol.append("(")
+                backtrack(myopen + 1, close)
+                sol.pop()
+            if myopen > close:
+                sol.append(")") 
+                backtrack(myopen, close + 1)
+                sol.pop()
+
+        backtrack(0, 0)
+        return ans
+
+        
